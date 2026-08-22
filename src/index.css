@@ -2,16 +2,27 @@
 
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "Space Mono", monospace;
 
-  --color-navy-950: #060b21;
-  --color-navy-900: #0b132b;
-  --color-navy-800: #1c2541;
-  --color-steel-500: #3b82f6;
-  --color-steel-400: #60a5fa;
-  --color-accent-400: #38bdf8;
-  --color-accent-300: #7dd3fc;
-  --color-gold-400: #d4af37;
-  --color-gold-300: #e6c96b;
+  /* Tactical military/rugged colors */
+  --color-navy-950: #08090a; /* Stark terminal black */
+  --color-navy-900: #0e1113; /* Deep tactical charcoal */
+  --color-navy-800: #161a1d; /* Mid charcoal/gray */
+  --color-steel-500: #3b5a45; /* Tactical military green / olive */
+  --color-steel-400: #4e775b; /* Muted army green */
+  --color-accent-400: #00ff66; /* Vibrant tactical HUD green */
+  --color-accent-300: #66ff99; /* Bright terminal HUD green */
+  --color-gold-400: #ffb800; /* Tactical caution amber */
+  --color-gold-300: #ffd04d; /* Muted amber */
+
+  /* Override radius values to force sharp, rugged, military corners */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
 }
 
 html {
@@ -21,13 +32,33 @@ html {
 body {
   margin: 0;
   background-color: var(--color-navy-950);
-  color: #e2e8f0;
+  color: #d4d4d8; /* zinc-300 for clean readable text */
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Force headings to use the tactical monospace font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Monospace font for navigation links and buttons to look like controls */
+nav a, button, a.inline-flex {
+  font-family: var(--font-mono);
+}
+
 ::selection {
-  background-color: var(--color-steel-500);
-  color: #fff;
+  background-color: var(--color-accent-400);
+  color: #000;
+}
+
+/* Custom technical dotted background pattern overlay */
+.tactical-grid {
+  background-image: 
+    radial-gradient(rgba(0, 255, 102, 0.08) 1px, transparent 0),
+    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px, 48px 48px;
 }

@@ -31,20 +31,20 @@ function CopyField({
   return (
     <div className="flex items-center justify-between gap-4 border-b border-white/5 py-4 last:border-b-0">
       <div>
-        <p className="text-xs uppercase tracking-widest text-slate-400">
+        <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
           {label}
         </p>
-        <p className={`mt-1 font-semibold text-white ${mono ? 'font-mono' : ''}`}>
+        <p className={`mt-1 text-sm font-bold text-white uppercase ${mono ? 'font-mono' : ''}`}>
           {value}
         </p>
       </div>
       <button
         type="button"
         onClick={handleCopy}
-        className="inline-flex items-center gap-1.5 rounded-md border border-white/10 px-3 py-1.5 text-xs font-medium text-slate-300 transition-colors hover:border-steel-500/50 hover:text-white"
+        className="inline-flex items-center gap-1.5 border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition-all hover:border-accent-400 hover:text-accent-400"
       >
-        {copied ? <Check size={14} className="text-accent-300" /> : <Copy size={14} />}
-        {copied ? 'Copied' : 'Copy'}
+        {copied ? <Check size={12} className="text-accent-300" /> : <Copy size={12} />}
+        {copied ? 'COPIED' : 'COPY'}
       </button>
     </div>
   )
@@ -54,58 +54,73 @@ export default function CorporateData() {
   return (
     <section
       id="compliance"
-      className="scroll-mt-16 border-y border-white/5 bg-navy-900 py-24"
+      className="scroll-mt-16 border-y border-white/5 bg-navy-900 py-24 relative"
     >
+      <div className="absolute top-4 left-6 font-mono text-[9px] text-zinc-600 select-none">
+        REF: PRT-PROC-05
+      </div>
+
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent-400">
-              Procurement &amp; Corporate Data
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              Compliance for Contracting Officers
-            </h2>
-            <p className="mt-4 leading-relaxed text-slate-300">
+            <div className="border-l-2 border-accent-400 pl-6 lg:pl-8">
+              <p className="text-xs font-bold uppercase tracking-widest text-accent-400 font-mono">
+                [ 05 // PROCUREMENT &amp; CONTRACTING ]
+              </p>
+              <h2 className="mt-3 text-3xl font-black text-white sm:text-4xl uppercase font-mono tracking-tight">
+                Compliance &amp; Data
+              </h2>
+            </div>
+            
+            <p className="mt-6 leading-relaxed text-zinc-400 font-sans text-sm sm:text-base">
               FARSYDE LLC is classified under the NAICS codes below and
               maintains an active SAM.gov registration, ready for federal
               procurement, GSA schedules, and prime contractor teaming
               agreements. Copy any code for your solicitations and capture
               tools.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
-                <Landmark size={15} className="text-steel-400" />
-                Active SAM Registration
+            
+            <div className="mt-8 flex flex-wrap gap-3 font-mono text-xs">
+              <span className="inline-flex items-center gap-2 border border-accent-400/20 bg-accent-400/5 px-3 py-1.5 text-accent-300">
+                <Landmark size={14} />
+                SAM REGISTRATION: ACTIVE
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
-                <Package size={15} className="text-steel-400" />
-                NAICS-Classified
+              <span className="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-1.5 text-zinc-400">
+                <Package size={14} />
+                NAICS-CLASSIFIED
               </span>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-navy-950/70 p-8">
-            <h3 className="text-lg font-semibold text-white">Company Profile</h3>
+          <div className="border border-white/10 bg-navy-950/40 p-8 relative group">
+            <div className="absolute top-0 right-0 border-t-4 border-r-4 border-white/5 group-hover:border-accent-400/30 w-3 h-3 transition-colors" />
+            <div className="absolute bottom-0 left-0 border-b-4 border-l-4 border-white/5 group-hover:border-accent-400/30 w-3 h-3 transition-colors" />
+
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider font-mono mb-4">
+              [ COMPANY PROFILE &amp; IDENTIFIERS ]
+            </h3>
+            
             <div className="mt-2">
-              <CopyField label="Legal Name" value={COMPANY.name} />
+              <CopyField label="Legal Entity Name" value={COMPANY.name} />
               <CopyField
-                label={`Primary NAICS ${COMPANY.primaryNaics}`}
+                label={`Primary NAICS Code`}
                 value={COMPANY.primaryNaics}
                 mono
               />
               <CopyField
-                label={`Secondary NAICS ${COMPANY.secondaryNaics}`}
+                label={`Secondary NAICS Code`}
                 value={COMPANY.secondaryNaics}
                 mono
               />
             </div>
-            <div className="mt-6 space-y-2 text-sm text-slate-400">
+            
+            <div className="mt-6 space-y-2 font-mono text-[11px] text-zinc-400 border-t border-white/5 pt-4">
               <p>
-                <span className="font-medium text-slate-200">541511</span> —{' '}
+                <span className="font-bold text-accent-400">{COMPANY.primaryNaics}</span> —{' '}
                 {COMPANY.primaryNaicsLabel}
               </p>
               <p>
-                <span className="font-medium text-slate-200">541512</span> —{' '}
+                <span className="font-bold text-accent-400">{COMPANY.secondaryNaics}</span> —{' '}
                 {COMPANY.secondaryNaicsLabel}
               </p>
             </div>
